@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+    <group>
+        <include file="$(find swarm_pso)/launch/single_drone.launch">
+            <arg name="ID" value="0"/>
+        </include>
+    </group>
+
+    <group>
+        <include file="$(find swarm_pso)/launch/single_drone.launch">
+            <arg name="ID" value="1"/>
+        </include>
+    </group>
+
+    <group>
+        <include file="$(find swarm_pso)/launch/single_drone.launch">
+            <arg name="ID" value="2"/>
+        </include>
+    </group>
+
+    <group>
+        <include file="$(find swarm_pso)/launch/single_drone.launch">
+            <arg name="ID" value="3"/>
+        </include>
+    </group>
+
+    <group>
+        <include file="$(find swarm_pso)/launch/single_drone.launch">
+            <arg name="ID" value="4"/>
+        </include>
+    </group>
+
+    <group>
+        <include file="$(find swarm_pso)/launch/single_drone.launch">
+            <arg name="ID" value="5"/>
+        </include>
+    </group>
+
+    <group>
+        <include file="$(find swarm_pso)/launch/single_drone.launch">
+            <arg name="ID" value="6"/>
+        </include>
+    </group>
+
+    <group>
+        <include file="$(find swarm_pso)/launch/single_drone.launch">
+            <arg name="ID" value="7"/>
+        </include>
+    </group>
+
+    <group>
+        <include file="$(find swarm_pso)/launch/single_drone.launch">
+            <arg name="ID" value="8"/>
+        </include>
+    </group>
+
+    <group>
+        <include file="$(find swarm_pso)/launch/single_drone.launch">
+            <arg name="ID" value="9"/>
+        </include>
+    </group>
+
+    <!-- <group>
+        <include file="$(find swarm_pso)/launch/pso_search.launch"/>
+    </group> -->
+</launch>
