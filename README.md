@@ -20,7 +20,7 @@ Create a catkin workspace, clone our repo and then build it with catkin
 cd
 mkdir swarm_ws
 mkdir swarm_ws/src
-cd swarm_ws
+cd swarm_ws/src
 catkin_init_workspace
 cd src
 git clone https://github.com/sohamsarpotdar2001/swarm_pso.git
