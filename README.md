@@ -1,13 +1,19 @@
 # swarm_pso (ongoing)
 
 ## Installation and Setup
+Assuming ROS Noetic is installed. If not, [here](https://wiki.ros.org/noetic/Installation/Ubuntu) are the steps to do so.   \
 Download the PX4-Autopilot repository and build it outside your catkin workspaces (if any)
 ```
 cd
 git clone https://github.com/PX4/PX4-Autopilot.git --recursive
 cd PX4-Autopilot
 bash Tools/setup/ubuntu.sh
-make px4_sitl gazebo_classic
+sudo apt-get install protobuf-compiler libeigen3-dev libopencv-dev -y
+```
+Restart the computer and then try in a new terminal
+```
+cd PX4-Autopilot
+make px4_sitl gazebo-classic
 ```
 This will launch a gazebo window with the empty world and iris drone model (Press Ctrl+C in terminal to close the seesion)
 
@@ -17,11 +23,9 @@ This will launch a gazebo window with the empty world and iris drone model (Pres
 
 Create a catkin workspace, clone our repo and then build it with catkin
 ```
-cd
-mkdir swarm_ws
-mkdir swarm_ws/src
-cd swarm_ws/src
-catkin_init_workspace
+mkdir -p ~/swarm_ws/src
+cd ~/swarm_ws
+catkin init
 cd src
 git clone https://github.com/sohamsarpotdar2001/swarm_pso.git
 cd ..
@@ -30,11 +34,35 @@ catkin build
 
 ## Making all the files executable
 ```
-cd swarm_ws/src/swarm_pso/launch
+cd ~/swarm_ws/src/swarm_pso/launch
 chmod +x *
-cd swarm_ws/src/swarm_pso/src
+cd ~/swarm_ws/src/swarm_pso/src
 chmod +x *
 ```
+
+## Installing Mavros
+```
+sudo apt-get install ros-${ROS_DISTRO}-mavros ros-${ROS_DISTRO}-mavros-extras ros-${ROS_DISTRO}-mavros-msgs
+wget https://raw.githubusercontent.com/mavlink/mavros/master/mavros/scripts/install_geographiclib_datasets.sh
+sudo bash ./install_geographiclib_datasets.sh
+```
+
+## Editing .bashrc to source workspaces
+```
+cd
+nano .bashrc
+```
+Go to the end of the file and add these lines
+```
+source ~/swarm_ws/devel/setup.bash
+export px4_dir=~/PX4-Autopilot
+source Tools/simulation/gazebo-classic/setup_gazebo.bash $px4_dir $px4_dir/build/px4_sitl_default
+export ROS_PACKAGE_PATH=$ROS_PACKAGE_PATH:$px4_dir
+export ROS_PACKAGE_PATH=$ROS_PACKAGE_PATH:$px4_dir/Tools/simulation/gazebo-classic/sitl_gazebo-classic
+export GAZEBO_MODEL_PATH=$GAZEBO_MODEL_PATH:~/swarm_ws/src/swarm_pso/models
+```
+Press Ctrl+O and ENTER to save the file and Ctrl+X to exit  \
+Close the terminal
 
 ## Launching the drone swarm and taking off
 In one terminal window -
